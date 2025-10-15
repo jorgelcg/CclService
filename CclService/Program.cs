@@ -6,8 +6,8 @@ using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<ControlService>();
-
+//builder.Services.AddSingleton<ControlService>();
+builder.Services.AddScoped<Web.Api.Infraestructure.Interface.IProductRepository, Web.Api.Infraestructure.Repositories.ProductRepository>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddNpgsql<APDBContext>(connectionString);
