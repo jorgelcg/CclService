@@ -1,10 +1,16 @@
-using CclService.Interfaces;
-using CclService.Services;
+
+using Web.Api.Aplication.Services;
+using Web.Api.Domain.Interfaces;
+using Web.Api.Infraestructure.DBContext;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddScoped<IControlservice, ControlService>();
+builder.Services.AddSingleton<ControlService>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddNpgsql<APDBContext>(connectionString);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
