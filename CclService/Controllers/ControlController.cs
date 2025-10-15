@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Api.Aplication.Services;
+using Web.Api.Domain.DTOs;
+using Web.Api.Domain.Interfaces;
 
 
 namespace CclService.Controllers
@@ -25,25 +27,25 @@ namespace CclService.Controllers
             var items = await _service.GetAllProductAsync();
             return Ok(items);
         }
-
+        //pendiente por implementar
         [HttpPost]
-        public async Task<IActionResult> GetProductsById([FromBody] Producs request)
+        public async Task<IActionResult> GetProductsById([FromBody] ProductoDto request)
         {
-            var created = await _service.CreateAsync(request);
-            return CreatedAtAction(nameof(GetAll), created);
+            //var created = await _service.CreateAsync(request);
+            return await Task.FromResult(Ok(request));
         }
-
+        //pendiente por implementar
         [HttpPut]
-        public async Task<IActionResult> ProductsById([FromBody] Producs request)
+        public async Task<IActionResult> ProductsById([FromBody] ProductoDto request)
         {
-            var updated = await _service.UpdateAsync(request);
-            return Ok(updated);
-        }   
-
+            //var updated = await _service.UpdateAsync(request);
+            return Ok();
+        }
+        //pendiente por implementar
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProductsById(Guid id)
         {
-            await _service.DeleteAsync(id);
+            //await _service.DeleteAsync(id);
             return NoContent();
         }
     }
